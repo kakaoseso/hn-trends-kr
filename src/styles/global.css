@@ -30,7 +30,7 @@ body {
 }
 
 main {
-	width: 800px; /* Wider main area */
+	width: 1000px; /* Increased to allow 3 columns */
 	max-width: calc(100% - 2em);
 	margin: auto;
 	padding: 3em 1em;
@@ -132,12 +132,15 @@ hr {
     display: flex;
     flex-direction: column;
     gap: 0.5em;
-    padding: 1.5em;
+    padding: 1.2em;
     border-radius: 12px;
     transition: all 0.2s ease-in-out;
     background: white;
     border: 1px solid rgba(var(--gray), 15%);
     height: 100%;
+    /* Ensure cards don't get too wide in single column */
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 .post-card:hover {
@@ -152,10 +155,11 @@ hr {
     aspect-ratio: 16/9;
     width: 100%;
     border-radius: 6px;
+    background-color: rgb(var(--gray-light));
 }
 
 .post-card .title {
-    font-size: 1.3em;
+    font-size: 1.25em;
     margin-top: 0.2em;
     line-height: 1.4;
 }
@@ -167,23 +171,32 @@ hr {
 }
 
 .post-card .excerpt {
-    font-size: 0.95em;
+    font-size: 0.9em;
     color: rgb(var(--gray-dark));
     line-height: 1.6;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    
+    /* Text Thumbnail Styling */
+    background-color: rgba(var(--gray-light), 30%);
+    padding: 1em;
+    border-radius: 6px;
+    font-style: italic;
+    min-height: 120px; /* Mimic image height */
 }
 
 section ul {
     list-style: none;
     padding: 0;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Smaller min-width */
+    gap: 1.5rem;
     justify-content: center;
+    max-width: 1000px; /* Constrain grid width */
 }
 
 @media (max-width: 720px) {
