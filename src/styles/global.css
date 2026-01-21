@@ -189,7 +189,13 @@ hr {
     line-height: 1.3;
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     z-index: 2;
+    padding: 1em; /* Reduce padding slightly to give more space */
 }
+
+/* Dynamic Font Sizing for Titles */
+.thumbnail-content.text-md { font-size: 1.1em; }
+.thumbnail-content.text-sm { font-size: 0.95em; }
+.thumbnail-content.text-xs { font-size: 0.85em; }
 
 .thumbnail-box.no-image .thumbnail-content {
     background: transparent; /* Gradient handles background */
