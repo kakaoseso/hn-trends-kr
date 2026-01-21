@@ -163,8 +163,8 @@ hr {
     line-height: 1.4;
     text-shadow: 0 2px 4px rgba(0,0,0,0.6);
     z-index: 2;
-    word-break: keep-all; /* Korean friendly */
-    overflow-wrap: anywhere; /* Prevent overflow */
+    word-break: normal; /* "keep-all" causes overflow on long words without spaces. "normal" is safer. */
+    overflow-wrap: break-word; /* Ensure wrapping */
 }
 
 /* ... */
@@ -174,10 +174,16 @@ section ul.home-grid {
     padding: 0;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Force 2 columns */
-    gap: 2.5rem;
+    grid-template-columns: repeat(2, 1fr); /* Explicit 2 columns */
+    gap: 2rem;
     justify-content: center;
     max-width: 1000px;
+}
+
+@media (max-width: 720px) {
+    section ul.home-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 720px) {
