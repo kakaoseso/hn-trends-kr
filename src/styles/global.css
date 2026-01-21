@@ -153,15 +153,21 @@ section ul.home-grid li > a {
     color: inherit; /* Reset color */
 }
 
+/* Global Box Sizing Reset */
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
 /* ... (keep other styles) ... */
 
 .thumbnail-content {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    right: 0; /* Constraint both sides */
+    width: auto; /* Allow auto width to respect padding */
     height: 100%;
-    padding: 1rem; /* Reduced padding */
+    padding: 1.5rem; /* Increased padding slightly for looks, now safe */
     display: flex;
     align-items: center;
     justify-content: center;
