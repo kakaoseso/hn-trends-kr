@@ -256,6 +256,8 @@ section ul.blog-list {
     gap: 0;
     max-width: 800px;
     margin: 0 auto;
+    list-style: none; /* Ensure no bullets */
+    padding: 0;
 }
 
 @media (max-width: 720px) {
