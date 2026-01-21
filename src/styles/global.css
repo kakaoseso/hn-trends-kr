@@ -161,7 +161,7 @@ section ul.home-grid li > a {
     left: 0;
     width: 100%;
     height: 100%;
-    padding: 1.5em; /* Cleaner padding */
+    padding: 1rem; /* Reduced padding */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -169,38 +169,25 @@ section ul.home-grid li > a {
     background: rgba(0,0,0,0.5); /* Slightly darker for better contrast */
     color: white;
     font-weight: 700;
-    font-size: 1.25em; /* Balanced size */
-    line-height: 1.4;
+    font-size: 1.15em; /* Slightly smaller */
+    line-height: 1.35;
     text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     z-index: 2;
-    overflow-wrap: break-word; /* Ensure wrapping */
-    word-wrap: break-word; /* Legacy support */
+    overflow-wrap: anywhere; /* Best for handling long words/URLs without overflow */
+    word-break: break-word; /* Ensure it breaks to prevent horizontal overflow */
     
-    /* Line Clamp to prevent vertical overflow */
+    /* Line Clamp to prevent vertical overflow (as fallback, though JS should handle fit) */
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 4; /* Allow up to 4 lines */
     -webkit-box-orient: vertical;
     overflow: hidden; 
-    
-    /* Center vertically even with line clamp? 
-       Note: -webkit-box with vertical orientation helps, 
-       but centering might be tricky with line-clamp. 
-       We'll rely on margin-auto logic if flex doesn't work well with clamp.
-       Actually, line-clamp usually requires display: -webkit-box.
-       We can center using margin auto?
-    */
 }
 
-/* If line-clamp conflicts with flex centering, we might need a wrapper.
-   But for now, let's assume text fits in 3 lines or is cut off cleanly.
-   We can use a workaround: Vertically center if short?
-   Let's skip line-clamp if we think 3/2 aspect ratio is enough.
-   3/2 is spacious.
-*/
+/* ... */
 
 .thumbnail-box {
-    width: 100%;
-    aspect-ratio: 3/2; /* Taller box for more text room */
+    /* Reduced height as requested (approx 2.2:1) */
+    aspect-ratio: 2.2/1; 
     border-radius: 12px;
     overflow: hidden; /* Important */
     position: relative;
@@ -209,7 +196,85 @@ section ul.home-grid li > a {
     background-color: #f0f0f0; /* Fallback color */
 }
 
-/* ... */
+/* Ensure no-image thumbnails show their gradient */
+.thumbnail-box.no-image .thumbnail-content {
+    background: transparent !important; /* Force transparent overlay */
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3); /* Softer shadow */
+}
+
+/* Vibrant Background Variants */
+.thumbnail-box.variant-0 { background: linear-gradient(135deg, #FF6B6B, #EE5253); }
+.thumbnail-box.variant-1 { background: linear-gradient(135deg, #4834D4, #686DE0); }
+.thumbnail-box.variant-2 { background: linear-gradient(135deg, #6AB04C, #BADC58); }
+.thumbnail-box.variant-3 { background: linear-gradient(135deg, #22A6B3, #7ED6DF); }
+.thumbnail-box.variant-4 { background: linear-gradient(135deg, #F0932B, #FFBE76); }
+.thumbnail-box.variant-5 { background: linear-gradient(135deg, #EB4D4B, #FF7979); }
+
+.post-card .date {
+    font-size: 0.9em;
+    color: rgb(var(--gray));
+    text-align: right;
+    margin-top: 0.5em;
+    padding-right: 0.5em;
+}
+
+/* Modern Blog List Styles (Clean & Premium) */
+ul.modern-blog-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 800px;
+}
+
+.modern-blog-item a {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1.5rem 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-decoration: none;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.modern-blog-item a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    border-color: rgba(var(--accent), 0.3);
+}
+
+.modern-blog-item .title {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: rgb(var(--black));
+    margin: 0;
+    flex: 1;
+    line-height: 1.4;
+    margin-right: 2rem;
+}
+
+.modern-blog-item .date {
+    font-size: 0.95em;
+    color: rgb(var(--gray));
+    white-space: nowrap;
+    font-family: 'Courier New', Courier, monospace; /* Tech feel */
+}
+
+@media (max-width: 600px) {
+    .modern-blog-item a {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1.25rem;
+    }
+    .modern-blog-item .title {
+        margin-right: 0;
+    }
+}
 
 section ul.home-grid {
     list-style: none;

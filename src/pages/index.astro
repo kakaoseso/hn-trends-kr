@@ -60,5 +60,32 @@ const posts = (await getCollection('blog')).sort(
 			</section>
 		</main>
 		<Footer />
+        <script>
+            function adjustFontSize() {
+                const containers = document.querySelectorAll('.thumbnail-content');
+                containers.forEach(container => {
+                    const box = container as HTMLElement;
+                    let fontSize = parseFloat(window.getComputedStyle(box).fontSize);
+                    
+                    // Reset to default max if needed (optional, but good for resize)
+                    // box.style.fontSize = ''; 
+                    
+                    // Shrink until it fits
+                    while (
+                        (box.scrollHeight > box.clientHeight || box.scrollWidth > box.clientWidth) && 
+                        fontSize > 10
+                    ) {
+                        fontSize -= 0.5;
+                        box.style.fontSize = fontSize + 'px';
+                    }
+                });
+            }
+            
+            // Adjust on load and resize
+            window.addEventListener('load', adjustFontSize);
+            window.addEventListener('resize', adjustFontSize);
+            // Also run immediately just in case
+            adjustFontSize();
+        </script>
 	</body>
 </html>
