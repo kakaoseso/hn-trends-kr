@@ -7,6 +7,6 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://kakaoseso.github.io',
-	base: 'hn-trends-kr',
+	base: '/hn-trends-kr',
 	integrations: [mdx(), sitemap()],
 });

@@ -12,7 +12,6 @@ The blog is built with [Astro](https://astro.build) and hosted on GitHub Pages. 
 ## Tech Stack
 - **Framework**: Astro
 - **Deployment**: GitHub Actions -> GitHub Pages
-- **Automation**: Custom Python bots (JetSki / Gemini)
 
 ## Links
 - Blog: [https://kakaoseso.github.io/hn-trends-kr/](https://kakaoseso.github.io/hn-trends-kr/)

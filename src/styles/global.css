@@ -132,41 +132,58 @@ hr {
     display: flex;
     flex-direction: column;
     gap: 0.5em;
-    padding: 1em;
+    padding: 1.5em;
     border-radius: 12px;
     transition: all 0.2s ease-in-out;
-    background: rgba(255, 255, 255, 0.5);
-    border: 1px solid rgba(var(--gray), 10%);
+    background: white;
+    border: 1px solid rgba(var(--gray), 15%);
+    height: 100%;
 }
 
 .post-card:hover {
-    transform: translateY(-3px);
-    background: white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-color: var(--accent);
 }
 
 .post-card img {
     margin-bottom: 0.5rem;
     object-fit: cover;
-    aspect-ratio: 2/1;
+    aspect-ratio: 16/9;
+    width: 100%;
+    border-radius: 6px;
 }
 
 .post-card .title {
-    font-size: 1.4em;
+    font-size: 1.3em;
     margin-top: 0.2em;
+    line-height: 1.4;
 }
 
 .post-card .date {
-    font-size: 0.9em;
+    font-size: 0.85em;
     color: rgb(var(--gray));
+    margin-top: auto;
+}
+
+.post-card .excerpt {
+    font-size: 0.95em;
+    color: rgb(var(--gray-dark));
+    line-height: 1.6;
+    margin-bottom: 1em;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 section ul {
     list-style: none;
     padding: 0;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
+    justify-content: center;
 }
 
 @media (max-width: 720px) {
