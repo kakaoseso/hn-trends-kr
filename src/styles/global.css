@@ -138,9 +138,19 @@ hr {
     background: transparent;
     border: none;
     height: 100%;
-    /* removed max-width to allow full width in 2-col grid */
-    width: 100%;
     margin: 0 auto;
+}
+
+/* Ensure grid items (li) fill the height */
+section ul.home-grid li {
+    display: flex; /* Makes anchor fill the height */
+    height: 100%;
+}
+
+section ul.home-grid li > a {
+    width: 100%; /* Anchor fills li */
+    text-decoration: none;
+    color: inherit; /* Reset color */
 }
 
 /* ... (keep other styles) ... */
@@ -151,20 +161,52 @@ hr {
     left: 0;
     width: 100%;
     height: 100%;
-    padding: 2em; /* More padding for bigger cards */
+    padding: 1.5em; /* Cleaner padding */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.5); /* Slightly darker for better contrast */
     color: white;
     font-weight: 700;
-    font-size: 1.4em; /* Slightly bigger font for bigger cards */
+    font-size: 1.25em; /* Balanced size */
     line-height: 1.4;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     z-index: 2;
-    word-break: normal; /* "keep-all" causes overflow on long words without spaces. "normal" is safer. */
     overflow-wrap: break-word; /* Ensure wrapping */
+    word-wrap: break-word; /* Legacy support */
+    
+    /* Line Clamp to prevent vertical overflow */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden; 
+    
+    /* Center vertically even with line clamp? 
+       Note: -webkit-box with vertical orientation helps, 
+       but centering might be tricky with line-clamp. 
+       We'll rely on margin-auto logic if flex doesn't work well with clamp.
+       Actually, line-clamp usually requires display: -webkit-box.
+       We can center using margin auto?
+    */
+}
+
+/* If line-clamp conflicts with flex centering, we might need a wrapper.
+   But for now, let's assume text fits in 3 lines or is cut off cleanly.
+   We can use a workaround: Vertically center if short?
+   Let's skip line-clamp if we think 3/2 aspect ratio is enough.
+   3/2 is spacious.
+*/
+
+.thumbnail-box {
+    width: 100%;
+    aspect-ratio: 3/2; /* Taller box for more text room */
+    border-radius: 12px;
+    overflow: hidden; /* Important */
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: box-shadow 0.2s ease;
+    background-color: #f0f0f0; /* Fallback color */
 }
 
 /* ... */
