@@ -65,17 +65,18 @@ const posts = (await getCollection('blog')).sort(
                 const containers = document.querySelectorAll('.thumbnail-content');
                 containers.forEach(container => {
                     const box = container as HTMLElement;
+                    
+                    // Start fresh (optional, relies on CSS default)
+                    // box.style.fontSize = '1.5em'; 
+                    
+                    function isOverflowing() {
+                        return box.scrollHeight > box.clientHeight || box.scrollWidth > box.clientWidth;
+                    }
+
+                    // Loop to shrink font size if overflowing
                     let fontSize = parseFloat(window.getComputedStyle(box).fontSize);
-                    
-                    // Reset to default max if needed (optional, but good for resize)
-                    // box.style.fontSize = ''; 
-                    
-                    // Shrink until it fits
-                    while (
-                        (box.scrollHeight > box.clientHeight || box.scrollWidth > box.clientWidth) && 
-                        fontSize > 10
-                    ) {
-                        fontSize -= 0.5;
+                    while (isOverflowing() && fontSize > 10) {
+                        fontSize -= 1; // Faster step
                         box.style.fontSize = fontSize + 'px';
                     }
                 });
@@ -84,7 +85,7 @@ const posts = (await getCollection('blog')).sort(
             // Adjust on load and resize
             window.addEventListener('load', adjustFontSize);
             window.addEventListener('resize', adjustFontSize);
-            // Also run immediately just in case
+            // Run immediately
             adjustFontSize();
         </script>
 	</body>

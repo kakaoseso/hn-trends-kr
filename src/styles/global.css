@@ -169,16 +169,19 @@ section ul.home-grid li > a {
     background: rgba(0,0,0,0.5); /* Slightly darker for better contrast */
     color: white;
     font-weight: 700;
-    font-size: 1.15em; /* Slightly smaller */
-    line-height: 1.35;
+    font-size: 1.5em; /* Start BIG so it fills the box */
+    line-height: 1.3;
     text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     z-index: 2;
-    overflow-wrap: anywhere; /* Best for handling long words/URLs without overflow */
-    word-break: break-word; /* Ensure it breaks to prevent horizontal overflow */
     
-    /* Line Clamp to prevent vertical overflow (as fallback, though JS should handle fit) */
+    /* CRITICAL: Force wrapping */
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important; 
+    
+    /* Line Clamp to prevent vertical overflow (fallback) */
     display: -webkit-box;
-    -webkit-line-clamp: 4; /* Allow up to 4 lines */
+    -webkit-line-clamp: 5; /* Allow up to 5 lines */
     -webkit-box-orient: vertical;
     overflow: hidden; 
 }
